@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wave Interference Sandbox</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- SECTION: Header -->
+    <header class="app-header">
+      <div class="branding">
+        <div class="logo-mark">λ</div>
+        <div class="title-block">
+          <h1 class="app-title">Wave Interference Sandbox</h1>
+          <p class="app-tagline">Created by Aashvik Goel.</p>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- SECTION: Main Layout -->
+    <main class="app-main">
+      <!-- SECTION: Visualization -->
+      <section class="panel panel-visual" aria-label="Wave interference visualization">
+        <div class="canvas-header">
+          <h2 class="panel-title">Interference Field</h2>
+          <p class="panel-subtitle">Colors show where waves add and cancel.</p>
+        </div>
+        <div class="canvas-wrapper">
+          <canvas id="waveCanvas" width="720" height="480" aria-hidden="true"></canvas>
+          <!-- Source markers rendered via canvas; fallback description: -->
+          <p class="canvas-fallback">
+            Interactive 2D field where color encodes the total wave amplitude from two sources.
+          </p>
+        </div>
+      </section>
+
+
+      <!-- SECTION: Controls & Explanation -->
+      <section class="panel panel-controls" aria-label="Controls and explanation">
+        <div class="controls-group">
+          <h2 class="panel-title">Controls</h2>
+          <div class="control-row">
+            <div class="control-column">
+              <h3 class="control-label">Move sources & detector</h3>
+              <ul class="control-hints">
+                <li>Drag the two glowing dots (sources) directly on the field.</li>
+                <li>Drag the ring-shaped marker to move the detector/observer.</li>
+                <li>Or use keyboard: <span class="key">1</span>/<span class="key">2</span> to select a source, then arrows to move.</li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="control-row sliders-row">
+            <div class="control-column">
+              <label class="slider-label" for="wavelength">Wavelength</label>
+              <input
+                id="wavelength"
+                type="range"
+                min="40"
+                max="200"
+                value="100"
+              />
+              <div class="slider-value" id="wavelengthValue">λ ≈ 100 px</div>
+            </div>
+            <div class="control-column">
+              <label class="slider-label" for="frequency">Angular frequency</label>
+              <input
+                id="frequency"
+                type="range"
+                min="1"
+                max="8"
+                value="4"
+              />
+              <div class="slider-value" id="frequencyValue">ω ≈ 4</div>
+            </div>
+          </div>
+
+
+          <div class="control-row">
+            <div class="control-column toggles">
+              <button id="pauseBtn" class="btn primary" type="button">Pause</button>
+              <button id="resetBtn" class="btn ghost" type="button">Reset sources</button>
+              <label class="checkbox">
+                <input id="showGrid" type="checkbox" checked />
+                <span>Show reference grid</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="explanation">
+          <h2 class="panel-title">What you're seeing</h2>
+          <p>
+            Each pixel acts like a small detector. For every pixel we compute the distance
+            <strong>r</strong> from each source and evaluate the wave
+            <code>S = A · sin( k·r − ω·t )</code>. The total signal is
+            <code>S<sub>total</sub> = S<sub>1</sub> + S<sub>2</sub></code>.
+          </p>
+          <ul class="legend">
+            <li><span class="chip chip-high"></span>Bright bands → strong constructive interference</li>
+            <li><span class="chip chip-low"></span>Dark lines → destructive interference</li>
+            <li><span class="chip chip-low"></span>Detector ring shows the local value of S at its position</li>
+          </ul>
+          <p class="tip">
+            Tip: drag the sources close together, then as you drag them farther apart try to recognize the pattern.
+          </p>
+        </div>
+      </section>
+    </main>
+
+
+    <footer class="app-footer">
+      <span>A sandbox to visualize superposition & interference.</span>
+    </footer>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
