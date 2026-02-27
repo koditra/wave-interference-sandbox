@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: #333;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #555;
+    transform: translateY(-2px);
+}
+
+.container { /* the box where the particles will be */
+    width: 700px;
+    height: 400px;
+    margin: 20px auto;
+    border: 2px solid black;
+    position: relative; 
+    overflow: hidden;
+    background: white;
+}
+
+.particle {
+    width: 12px;       /* small circle particle */
+    height: 12px;
+    border-radius: 50%;
+    position: absolute; /* so that the particles can actually move */
+    background: blue;   /*color for the solids*/
+    transition: background 0.5s ease; /* to have a smoother color transition */
+    box-shadow: 0 0 8px currentColor; /* to make the particles glow b/c why not*/
+}
+
+#connectionSVG {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Magnifier styles */
+#magnifier {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    pointer-events: none;
+    border: 2px solid rgba(255,255,255,0.35);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.02);
+    z-index: 30; /* above mask */
+}
+
+#magnifier-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.magnified {
+    box-shadow: 0 0 6px rgba(0,0,0,0.35), 0 0 8px currentColor;
+    outline: 1px solid rgba(255,255,255,0.85);
+    outline-offset: -1px;
+    transform-origin: center;
+    transform: scale(0.85);
+    pointer-events: none;
+}
+
+/* Mask circle that covers original particles under the magnifier */
+#maskCircle {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: white; /* match container background */
+    pointer-events: none;
+    z-index: 20; /* below magnifier but above originals */
+    transform: translate(-50%, -50%);
+}
+
+.home-button {
+    position: fixed;       /* stays in place */
+    top: 15px;
+    left: 15px;
+    padding: 10px 18px;
+    background: #222;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 1000;         /* above everything */
+    transition: 0.3s ease;
+}
+
+.home-button:hover {
+    background: #444;
+    transform: translateY(-2px);
+}
